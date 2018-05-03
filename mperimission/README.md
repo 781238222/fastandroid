@@ -1,14 +1,16 @@
 [English](https://github.com/781238222/fastandroid/blob/master/mperimission/README_en.md)
 [中文](https://github.com/781238222/fastandroid/blob/master/mperimission/README.md)
-# 动态权限申请
 
-1、引入jar包：
+# Dynamic permission application
+
+1, the introduction of the jar package:
     
 > implementation 'com.mengqd:mpermissions:1.0.0'
 
-2、在Activity中使用：
-  ```
-  public class MainActivity extends AppCompatActivity {
+2, used in the Activity:
+
+```
+public class MainActivity extends AppCompatActivity {
   	    @Override
   	    protected void onCreate(Bundle savedInstanceState) {
   	        super.onCreate(savedInstanceState);
@@ -43,30 +45,34 @@
   	         MPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults);
   	  }
   	}
-  ```
-  注意：onRequestPermissionsResult中提交处理结果。
+```
+
+  Note: The result is submitted in onRequestPermissionsResult.
   
-  3、在Fragment中使用：
-  和在Activity中使用一样，唯一的却别是activity的onRequestPermissionsResult方法中要调用fragment的onRequestPermissionsResult
-  方法
-  ```
-  mPermissionTestFragment.onRequestPermissionsResult(requestCode, permissions, grantResults)
-  ```
+  3, use in Fragment:
+
+  The same as in the Activity, the only difference is that the onRequestPermissionsResult method of the activity calls the onRequestPermissionsResult of the fragment.
+  method
+
+```
+ mPermissionTestFragment.onRequestPermissionsResult(requestCode, permissions, grantResults)
+```
+
   
-  4、PermissionCallback有个默认实现的抽象类，此类实现了权限拒绝后再次申请未通过的权限
+  4, PermissionCallback has a default implementation of the abstract class, this class implements the permission to refuse to re-apply for failed permissions
    
-    ```
-     MPermissions.createBuilder(activity)
+
+```
+MPermissions.createBuilder(activity)
                     .requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE,
                             Manifest.permission.ACCESS_COARSE_LOCATION})
                     .setPermissionCallback(new AbstractDefaultPermissionCallback(activity) {
                         @Override
-                        public void onPermissionsAllGranted(List<String> permissions) {
+                        Public void onPermissionsAllGranted(List<String> permissions) {
                             
                         }
                     }).build();
-    ```
+```
     
-    注意此类实现了勾选“不在提示”的权限申请框，理想情况下应该跳转到权限设置界面，但国内room五花八门，除了跳转不一样外，有的即使
-    跳转了也无法修改，所以此情况下大家酌情处理。
+Pay attention to this type of implementation of the check box "not prompted" permission application box, under ideal circumstances should jump to the permission settings interface, but the domestic room variety, in addition to the jump is not the same, some even It can't be changed even if it jumps, so in this case, we handle it as appropriate.

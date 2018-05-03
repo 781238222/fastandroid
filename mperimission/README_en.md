@@ -8,6 +8,7 @@
 > implementation 'com.mengqd:mpermissions:1.0.0'
 
 2, used in the Activity:
+
   ```
   Public class MainActivity extends AppCompatActivity {
   @Override
@@ -45,11 +46,14 @@
   }
   }
   ```
+
   Note: The result is submitted in onRequestPermissionsResult.
   
   3, use in Fragment:
+
   The same as in the Activity, the only difference is that the onRequestPermissionsResult method of the activity calls the onRequestPermissionsResult of the fragment.
   method
+
   ```
   mPermissionTestFragment.onRequestPermissionsResult(requestCode, permissions, grantResults)
   ```

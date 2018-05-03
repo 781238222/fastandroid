@@ -6,4 +6,4 @@ The project aims to create a powerful and flexible configuration of a rapid deve
 
 
 Project contains features:
->1, [dynamic permission request] (https://github.com/781238222/fastandroid/blob/master/mperimission/README.md)
+>1, [dynamic permission request] (https://github.com/781238222/fastandroid/blob/master/mperimission/README_en.md)
