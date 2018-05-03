@@ -1,3 +1,5 @@
+[English](https://github.com/781238222/fastandroid/blob/master/mperimission/README_en.md)
+[中文](https://github.com/781238222/fastandroid/blob/master/mperimission/README.md)
 # 动态权限申请
 
 1、引入jar包：
@@ -52,6 +54,7 @@
   ```
   
   4、PermissionCallback有个默认实现的抽象类，此类实现了权限拒绝后再次申请未通过的权限
+   
     ```
      MPermissions.createBuilder(activity)
                     .requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -64,5 +67,6 @@
                         }
                     }).build();
     ```
+    
     注意此类实现了勾选“不在提示”的权限申请框，理想情况下应该跳转到权限设置界面，但国内room五花八门，除了跳转不一样外，有的即使
     跳转了也无法修改，所以此情况下大家酌情处理。
