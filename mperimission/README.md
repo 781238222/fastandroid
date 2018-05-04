@@ -4,7 +4,7 @@
 
 1、引入jar包：
     
-> implementation 'com.mengqd:mpermissions:{lastVersion}'
+> implementation 'com.mengqd:mpermissions:1.0.1'
 
 2、在Activity中使用：
   ```

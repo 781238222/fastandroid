@@ -23,7 +23,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url 'https://dl.bintray.com/mengqd/maven' }
+//        maven { url 'https://dl.bintray.com/mengqd/maven' }
     }
 }
 
