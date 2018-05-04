@@ -22,17 +22,17 @@ public class MainActivity extends AppCompatActivity {
                                      Manifest.permission.ACCESS_COARSE_LOCATION})
                              .setPermissionCallback(new PermissionCallback() {
                                  @Override
-                                 public void onPermissionsAllGranted(List<String> permissions) {
+                                 public void onPermissionsAllGranted(int requestCode,List<String> permissions) {
                                      
                                  }
              
                                  @Override
-                                 public void onPermissionsTemporaryDenied(List<String> permissions) {
+                                 public void onPermissionsTemporaryDenied(int requestCode,List<String> permissions) {
              
                                  }
              
                                  @Override
-                                 public void onPermissionsForeverDenied(List<String> permissions) {
+                                 public void onPermissionsForeverDenied(int requestCode,List<String> permissions) {
              
                                  }
                              }).build();
@@ -69,10 +69,18 @@ MPermissions.createBuilder(activity)
                             Manifest.permission.ACCESS_COARSE_LOCATION})
                     .setPermissionCallback(new AbstractDefaultPermissionCallback(activity) {
                         @Override
-                        Public void onPermissionsAllGranted(List<String> permissions) {
+                        Public void onPermissionsAllGranted(int requestCode,List<String> permissions) {
                             
                         }
                     }).build();
 ```
     
 Pay attention to this type of implementation of the check box "not prompted" permission application box, under ideal circumstances should jump to the permission settings interface, but the domestic room variety, in addition to the jump is not the same, some even It can't be changed even if it jumps, so in this case, we handle it as appropriate.
+
+Update log:
+2018-5-4:
+  1, increase callback parameters requestCode.
+ 
+2018-5-3:
+  1, to achieve single / multiple permissions dynamic application.
+  2. The parameter in the callback is the set of corresponding permissions.

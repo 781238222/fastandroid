@@ -4,7 +4,7 @@
 
 1、引入jar包：
     
-> implementation 'com.mengqd:mpermissions:1.0.0'
+> implementation 'com.mengqd:mpermissions:{lastVersion}'
 
 2、在Activity中使用：
   ```
@@ -20,17 +20,17 @@
                                      Manifest.permission.ACCESS_COARSE_LOCATION})
                              .setPermissionCallback(new PermissionCallback() {
                                  @Override
-                                 public void onPermissionsAllGranted(List<String> permissions) {
+                                 public void onPermissionsAllGranted(int requestCode,List<String> permissions) {
                                      
                                  }
              
                                  @Override
-                                 public void onPermissionsTemporaryDenied(List<String> permissions) {
+                                 public void onPermissionsTemporaryDenied(int requestCode,List<String> permissions) {
              
                                  }
              
                                  @Override
-                                 public void onPermissionsForeverDenied(List<String> permissions) {
+                                 public void onPermissionsForeverDenied(int requestCode,List<String> permissions) {
              
                                  }
                              }).build();
@@ -62,7 +62,7 @@
                             Manifest.permission.ACCESS_COARSE_LOCATION})
                     .setPermissionCallback(new AbstractDefaultPermissionCallback(activity) {
                         @Override
-                        public void onPermissionsAllGranted(List<String> permissions) {
+                        public void onPermissionsAllGranted(int requestCode,List<String> permissions) {
                             
                         }
                     }).build();
@@ -70,3 +70,11 @@
     
     注意此类实现了勾选“不在提示”的权限申请框，理想情况下应该跳转到权限设置界面，但国内room五花八门，除了跳转不一样外，有的即使
     跳转了也无法修改，所以此情况下大家酌情处理。
+
+更新日志：
+2018-5-4：
+ 1、回调中增加requestCode参数。
+ 
+2018-5-3:
+ 1、实现单个/多个权限的动态申请。
+ 2、回调中参数为相应权限的集合。

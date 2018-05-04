@@ -17,18 +17,21 @@ public interface PermissionCallback {
     /**
      * 获取全部权限
      * @param permissions permission list
+     * @param requestCode requestCode
      */
-    void onPermissionsAllGranted(List<String> permissions);
+    void onPermissionsAllGranted(int requestCode,List<String> permissions);
 
     /**
      * 有未通过权限且这些权限没有勾选不在提示
      * @param permissions permission list
+     * @param requestCode requestCode
      */
-    void onPermissionsTemporaryDenied(List<String> permissions);
+    void onPermissionsTemporaryDenied(int requestCode,List<String> permissions);
 
     /**
      * 有未通过权限且这些权限勾选不在提示
      * @param permissions permission list
+     * @param requestCode requestCode
      */
-    void onPermissionsForeverDenied(List<String> permissions);
+    void onPermissionsForeverDenied(int requestCode,List<String> permissions);
 }

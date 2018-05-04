@@ -25,9 +25,10 @@ public abstract class AbstractDefaultPermissionCallback implements PermissionCal
      * 有未通过权限且这些权限没有勾选不在提示
      *
      * @param permissions 未通过权限list
+     * @param requestCode requestCode
      */
     @Override
-    public void onPermissionsTemporaryDenied(List<String> permissions) {
+    public void onPermissionsTemporaryDenied(int requestCode,List<String> permissions) {
         MPermissions.createBuilder(activity)
                 .requestPermissions(permissions)
                 .setPermissionCallback(this)
@@ -40,9 +41,10 @@ public abstract class AbstractDefaultPermissionCallback implements PermissionCal
      * 跳转了也无法修改，所以此情况下大家酌情处理
      *
      * @param permissions 不在提示权限list
+     * @param requestCode requestCode
      */
     @Override
-    public void onPermissionsForeverDenied(List<String> permissions) {
+    public void onPermissionsForeverDenied(int requestCode,List<String> permissions) {
 
     }
 }

@@ -25,30 +25,29 @@ import java.util.List;
 
 public class MPermissions {
 
-    private static final int REQUEST_PERMISSION_CODE = 100;
 
     static Activity activity;
     List<String> permissionList;
     static PermissionCallback permissionCallback;
-
+    int requestCode;
     private MPermissions(Builder builder) {
         this.activity = builder.activity;
         this.permissionList = builder.permissionList;
         this.permissionCallback = builder.permissionCallback;
+        this.requestCode = builder.requestCode;
         checkPermissions();
     }
 
     /**
      * 在Activity.onRequestPermissionsResult方法中回调此方法
      * 处理申请权限结果
-     * @param requestCode request code
-     * @param permissions permission list
+     *
+     * @param requestCode  request code
+     * @param permissions  permission list
      * @param grantResults 结果集合
      */
     public static void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (REQUEST_PERMISSION_CODE != requestCode) {
-            return;
-        }
+
         //申请通过的权限列表
         List<String> grantedList = new ArrayList<>();
         //申请失败的权限列表
@@ -63,7 +62,7 @@ public class MPermissions {
         if (deniedList.size() == 0) {
             //没有未通过的权限
             if (null != permissionCallback) {
-                permissionCallback.onPermissionsAllGranted(new ArrayList<String>());
+                permissionCallback.onPermissionsAllGranted(requestCode,null);
             }
             return;
         }
@@ -81,13 +80,13 @@ public class MPermissions {
         if (foreverDeniedList.size() > 0) {
             //有未通过权限且这些权限勾选不在提示
             if (null != permissionCallback) {
-                permissionCallback.onPermissionsForeverDenied(foreverDeniedList);
+                permissionCallback.onPermissionsForeverDenied(requestCode, foreverDeniedList);
             }
             return;
         }
         //有未通过权限且这些权限没有勾选不在提示
         if (null != permissionCallback) {
-            permissionCallback.onPermissionsTemporaryDenied(temporaryDeniedList);
+            permissionCallback.onPermissionsTemporaryDenied(requestCode, temporaryDeniedList);
         }
     }
 
@@ -104,11 +103,11 @@ public class MPermissions {
         }
         if (applyPermissionList.size() > 0) {
             ActivityCompat.requestPermissions(activity, applyPermissionList.toArray(new String[applyPermissionList.size()]),
-                    REQUEST_PERMISSION_CODE);
+                   requestCode );
         } else {
             //拥有全部权限
             if (null != permissionCallback) {
-                permissionCallback.onPermissionsAllGranted(new ArrayList<String>());
+                permissionCallback.onPermissionsAllGranted(this.requestCode,null);
             }
         }
     }
@@ -125,9 +124,11 @@ public class MPermissions {
     }
 
     public static final class Builder {
+        private static final int REQUEST_PERMISSION_DEFAULT_CODE = 100;
         Activity activity;
         List<String> permissionList;
         PermissionCallback permissionCallback;
+        int requestCode = REQUEST_PERMISSION_DEFAULT_CODE;
 
         public Builder(Activity activity) {
             this.activity = activity;
@@ -151,6 +152,11 @@ public class MPermissions {
                 permissionList = new ArrayList<>();
             }
             permissionList.add(permission);
+            return this;
+        }
+
+        public Builder requestCode(int requestCode) {
+            this.requestCode = requestCode;
             return this;
         }
 

@@ -30,20 +30,22 @@ class MPermissionTestFragment : Fragment() {
                   .requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.ACCESS_COARSE_LOCATION))
+                  .requestCode(10)
                   .setPermissionCallback(object :PermissionCallback{
                       /**
                        * 有未通过权限且这些权限没有勾选不在提示
                        * @param permissions permission list
                        */
-                      override fun onPermissionsTemporaryDenied(permissions: MutableList<String>?) {
-                          TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                      override fun onPermissionsTemporaryDenied(requestCode: Int,permissions: MutableList<String>?) {
+                          Toast.makeText(context,"requestCode:"+requestCode,Toast.LENGTH_LONG).show();
+
                       }
 
                       /**
                        * 有未通过权限且这些权限勾选不在提示
                        * @param permissions permission list
                        */
-                      override fun onPermissionsForeverDenied(permissions: MutableList<String>?) {
+                      override fun onPermissionsForeverDenied(requestCode: Int,permissions: MutableList<String>?) {
                           TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                       }
 
@@ -51,10 +53,10 @@ class MPermissionTestFragment : Fragment() {
                        * 获取全部权限
                        * @param permissions permission list
                        */
-                      override fun onPermissionsAllGranted(permissions: MutableList<String>?) {
+                      override fun onPermissionsAllGranted(requestCode: Int,permissions: MutableList<String>?) {
                           TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                       }
-                  })
+                  }).build()
 //        MPermissions.createBuilder(activity)
 //                .requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
 //                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
