@@ -78,9 +78,13 @@ MPermissions.createBuilder(activity)
 Pay attention to this type of implementation of the check box "not prompted" permission application box, under ideal circumstances should jump to the permission settings interface, but the domestic room variety, in addition to the jump is not the same, some even It can't be changed even if it jumps, so in this case, we handle it as appropriate.
 
 Update log:
+
 2018-5-4:
-  1, increase callback parameters requestCode.
- 
+
+    1, increase callback parameters requestCode.
+
 2018-5-3:
-  1, to achieve single / multiple permissions dynamic application.
-  2. The parameter in the callback is the set of corresponding permissions.
+
+    1, to achieve single / multiple permissions dynamic application.
+
+    2, The parameter in the callback is the set of corresponding permissions.

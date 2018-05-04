@@ -44,16 +44,16 @@
   	  }
   	}
   ```
-  注意：onRequestPermissionsResult中提交处理结果。
+注意：onRequestPermissionsResult中提交处理结果。
   
-  3、在Fragment中使用：
-  和在Activity中使用一样，唯一的却别是activity的onRequestPermissionsResult方法中要调用fragment的onRequestPermissionsResult
-  方法
+3、在Fragment中使用：
+和在Activity中使用一样，唯一的却别是activity的onRequestPermissionsResult方法中要调用fragment的onRequestPermissionsResult
+方法
   ```
   mPermissionTestFragment.onRequestPermissionsResult(requestCode, permissions, grantResults)
   ```
   
-  4、PermissionCallback有个默认实现的抽象类，此类实现了权限拒绝后再次申请未通过的权限
+4、PermissionCallback有个默认实现的抽象类，此类实现了权限拒绝后再次申请未通过的权限
    
     ```
      MPermissions.createBuilder(activity)
@@ -68,13 +68,17 @@
                     }).build();
     ```
     
-    注意此类实现了勾选“不在提示”的权限申请框，理想情况下应该跳转到权限设置界面，但国内room五花八门，除了跳转不一样外，有的即使
-    跳转了也无法修改，所以此情况下大家酌情处理。
+注意此类实现了勾选“不在提示”的权限申请框，理想情况下应该跳转到权限设置界面，但国内room五花八门，除了跳转不一样外，有的即使
+跳转了也无法修改，所以此情况下大家酌情处理。
 
 更新日志：
+
 2018-5-4：
- 1、回调中增加requestCode参数。
- 
+
+    1、回调中增加requestCode参数。 
+
 2018-5-3:
- 1、实现单个/多个权限的动态申请。
- 2、回调中参数为相应权限的集合。
+
+    1、实现单个/多个权限的动态申请。
+    
+    2、回调中参数为相应权限的集合。
